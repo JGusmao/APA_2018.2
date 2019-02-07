@@ -61,9 +61,9 @@ void quickSort(tLista *lista, int inicio, int fim){
 		}
 	}
 	if(j > inicio) //quebra a lista para realizar o quicksort recursivamente
-		quickSort(lista, inicio, j+1);
+		quickSort(lista, inicio, j+1);//primeira metade
 	if(i < fim)
-		quickSort(lista, i, fim);
+		quickSort(lista, i, fim);//segunda metade
 }
 
 void merge(tLista *lista, int comeco, int meio, int fim) { //essa função vai fundir as metades anteriormente divididas
