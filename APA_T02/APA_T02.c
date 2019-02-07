@@ -12,7 +12,7 @@ static int EstaCheia(const tLista *lista){
 }
 
 int Comprimento(const tLista *lista){
-    return lista->nElementos; /* Na~o ha¥ o que calcular */
+    return lista->nElementos; /* Na~o ha¬¥ o que calcular */
 }
 
 void ExibeLista(const tLista *lista){
@@ -23,10 +23,10 @@ void ExibeLista(const tLista *lista){
 }
 
 int AcrescentaElemento(tLista *lista, int elemento){
-    /* Verifica se e¥ possi¥vel acrescentar */
+    /* Verifica se e¬¥ possi¬¥vel acrescentar */
     /* mais um elemento na lista          */
     if (EstaCheia(lista)) {
-        return 1; /* A lista esta¥ cheia */
+        return 1; /* A lista esta¬¥ cheia */
     }
 
     /* Acrescenta um novo elemento ao final da lista */
@@ -40,18 +40,18 @@ void quickSort(tLista *lista, int inicio, int fim){
 	int i, j, pivo, aux;
 	i = inicio;
 	j = fim-1;
-	pivo = lista->elementos[(inicio + fim) / 2]; //Escolho usar o pivÙ como o elemento central
+	pivo = lista->elementos[(inicio + fim) / 2]; //Escolho usar o piv√¥ como o elemento central
 	while(i <= j)
 	{
-		while(lista->elementos[i] < pivo && i < fim)
+		while(lista->elementos[i] < pivo && i < fim) //percorre a lista at√° achar um elemento menor que o piv√¥
 		{
 			i++;
 		}
-		while(lista->elementos[j] > pivo && j > inicio)
+		while(lista->elementos[j] > pivo && j > inicio) // procura os elementos maiores que o piv√¥
 		{
 			j--;
 		}
-		if(i <= j)
+		if(i <= j) //troca os elementos achados
 		{
 			aux = lista->elementos[i];
 			lista->elementos[i] = lista->elementos[j];
@@ -60,18 +60,18 @@ void quickSort(tLista *lista, int inicio, int fim){
 			j--;
 		}
 	}
-	if(j > inicio)
+	if(j > inicio) //quebra a lista para realizar o quicksort recursivamente
 		quickSort(lista, inicio, j+1);
 	if(i < fim)
 		quickSort(lista, i, fim);
 }
 
-void merge(tLista *lista, int comeco, int meio, int fim) { //essa funÁ„o vai fundir as metades anteriormente divididas
-    int com1 = comeco, com2 = meio+1, comAux = 0; //CriaÁ„o da lista auxiliar para fundir as partiÁıes
+void merge(tLista *lista, int comeco, int meio, int fim) { //essa fun√ß√£o vai fundir as metades anteriormente divididas
+    int com1 = comeco, com2 = meio+1, comAux = 0; //Cria√ß√£o da lista auxiliar para fundir as parti√ß√µes
     tLista *listaAux;
     listaAux = malloc(sizeof(tLista));
 
-    while(com1 <= meio && com2 <= fim){ //OrdenaÁ„o dos elementos no vetor auxiliar por comparaÁ„o
+    while(com1 <= meio && com2 <= fim){ //Ordena√ß√£o dos elementos no vetor auxiliar por compara√ß√£o
         if(lista->elementos[com1] < lista->elementos[com2]) {
             listaAux->elementos[comAux] = lista->elementos[com1];
             com1++;
@@ -101,12 +101,12 @@ void merge(tLista *lista, int comeco, int meio, int fim) { //essa funÁ„o vai fun
     free(listaAux);
 }
 
-void mergeSort(tLista *lista, int comeco, int fim){ //Essa funÁ„o È respons·vel por dividir recursivamente o conjunto de dados atÈ que cada subconjunto possua 1 elemento
+void mergeSort(tLista *lista, int comeco, int fim){ //Essa fun√ß√£o √© respons√°vel por dividir recursivamente o conjunto de dados at√© que cada subconjunto possua 1 elemento
     if (comeco < fim) {
-        int meio = (fim+comeco)/2; //DefiniÁ„o dos novos inicio e fim
+        int meio = (fim+comeco)/2; //Defini√ß√£o dos novos inicio e fim
 
-        mergeSort(lista, comeco, meio); //PartiÁ„o da esquerda
-        mergeSort(lista, meio+1, fim); //PartiÁ„o da direita
+        mergeSort(lista, comeco, meio); //Parti√ß√£o da esquerda
+        mergeSort(lista, meio+1, fim); //Parti√ß√£o da direita
         merge(lista, comeco, meio, fim); //Funde ordenando
     }
 }
