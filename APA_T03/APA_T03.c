@@ -83,42 +83,34 @@ void heapSort(tLista *lista, int n){
     }
 }
 
-int maximum(tLista *lista, int tam){
+int maximo(tLista *lista, int tam) {
+   int max = lista->elementos[1];
+   for(int i = 2; i<=tam; i++) {
+      if(lista->elementos[i] > max)
+         max = lista->elementos[i];
+   }
 
-  int atual = 0;
-  int max = 0;
-
-  for(atual = 0; atual < tam; atual++){
-    if(lista->elementos[atual] > max){ 
-        max = lista->elementos[atual]; 
-    }
-  }
-
-  return max;
+   return max; //o elemento maximo do vetor
 }
 
 void countingSort(tLista *lista, int tam){
+    int saida[tam+1];
+    int max = maximo(lista, tam);
+    int count[max+1]; //create count array (max+1 number of elements)
 
-  int atual = 0;
-  int max = maximum(lista, tam); //maior elementos da lista
-  int * counting = calloc(max, sizeof(int)); // Já seta os elementos da lista como zero; O tamanho do maior inteiro da lista
+    for(int i = 0; i<=max; i++)
+        count[i] = 0; //inicializa o array com 0´s
+    for(int i = 0; i <=tam-1; i++)
+        count[lista->elementos[i]]++; //aumenta no vetor count em 1 no elemento da lista.
+    for(int i = 1; i<=max; i++)
+        count[i] += count[i-1]; //soma os numeros do vetor cumulativmente até o elemento final
 
-  for(atual = 0; atual < tam; atual ++){
-    counting[lista->elementos[atual]]++; //percorre a lista de elementos contando as ocorrencias dos inteiros dela
-  }
-
-  int num = 0;
-  atual = 0;
-
-  while(atual <= tam){
-    while(counting[num] > 0){
-      lista->elementos[atual] = num; 
-      counting[num]--; //decrementa o valor da contagem desse elemento
-      atual++;
-      if(atual > tam){ 
-          break; 
-      }
+    for(int i = tam; i>=0; i--) {
+        saida[count[lista->elementos[i]]-1] = lista->elementos[i];//posiciona es elementos corretamento no array de saida
+        count[lista->elementos[i]] -= 1; //decrementa o numero da lista de contagem
     }
-    num++;
-  }
+
+   for(int i = 0; i<=tam; i++) {
+        lista->elementos[i] = saida[i]; //copia o vetor de saia que esta ordenado para o vetor principal
+    }
 }
