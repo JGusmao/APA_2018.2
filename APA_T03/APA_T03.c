@@ -101,10 +101,10 @@ void countingSort(tLista *lista, int tam){
 
   int atual = 0;
   int max = maximum(lista, tam); //maior elementos da lista
-  int * counting = calloc(max, sizeof(int)); // Zeros fora da lista
+  int * counting = calloc(max, sizeof(int)); // Já seta os elementos da lista como zero; O tamanho do maior inteiro da lista
 
   for(atual = 0; atual < tam; atual ++){
-    counting[lista->elementos[atual]]++;
+    counting[lista->elementos[atual]]++; //percorre a lista de elementos contando as ocorrencias dos inteiros dela
   }
 
   int num = 0;
@@ -112,10 +112,12 @@ void countingSort(tLista *lista, int tam){
 
   while(atual <= tam){
     while(counting[num] > 0){
-      lista->elementos[atual] = num;
-      counting[num]--;
+      lista->elementos[atual] = num; 
+      counting[num]--; //decrementa o valor da contagem desse elemento
       atual++;
-      if(atual > tam){ break; }
+      if(atual > tam){ 
+          break; 
+      }
     }
     num++;
   }
