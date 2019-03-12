@@ -105,7 +105,7 @@ void countingSort(tLista *lista, int tam){
     for(int i = 1; i<=max; i++)
         count[i] += count[i-1]; //soma os numeros do vetor cumulativmente até o elemento final
 
-    for(int i = tam; i>=0; i--) {
+    for(int i = tam-1; i>=0; i--) {
         saida[count[lista->elementos[i]]-1] = lista->elementos[i];//posiciona es elementos corretamento no array de saida
         count[lista->elementos[i]] -= 1; //decrementa o numero da lista de contagem
     }
