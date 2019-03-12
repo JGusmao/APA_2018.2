@@ -94,7 +94,7 @@ int maximo(tLista *lista, int tam) {
 }
 
 void countingSort(tLista *lista, int tam){
-    int saida[tam+1];
+    int saida[tam];
     int max = maximo(lista, tam);
     int count[max+1]; //create count array (max+1 number of elements)
 
